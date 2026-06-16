@@ -1,19 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './App.css';
+import ProductList from './ProductList';
 
-function AboutUs() {
+function App() {
+  const [showProductList, setShowProductList] = useState(false);
+
+  const handleGetStarted = () => {
+    setShowProductList(true);
+  };
+
   return (
-    <div style={{ padding: '40px', maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-      <h1 style={{ color: 'green' }}>About Paradise Nursery</h1>
-      <p style={{ fontSize: '18px', lineHeight: '1.8', color: '#555' }}>
-        Welcome to Paradise Nursery, where green dreams come to life! We are passionate about 
-        bringing the beauty and tranquility of nature into your home. Our mission is to provide 
-        high-quality houseplants that not only enhance the aesthetic of your living spaces but 
-        also contribute to a healthier, happier lifestyle. From air-purifying plants to aromatic 
-        herbs and stunning decorative varieties, we have something for every plant lover. 
-        Let us help you create your own little paradise, one plant at a time.
-      </p>
+    <div>
+      {!showProductList ? (
+        <div className="app-container">
+          <div className="landing-page">
+            <h1 className="company-name">Paradise Nursery</h1>
+            <p className="company-description">
+              Welcome to Paradise Nursery, where green dreams come to life! We are passionate about 
+              bringing the beauty and tranquility of nature into your home. Whether you are looking for 
+              aromatic herbs, medicinal plants, or stunning decorative varieties, we have something for 
+              every plant lover. Let us help you create your own little paradise, one plant at a time.
+            </p>
+            <button className="get-started-btn" onClick={handleGetStarted}>
+              Get Started
+            </button>
+          </div>
+        </div>
+      ) : (
+        <ProductList />
+      )}
     </div>
   );
 }
 
-export default AboutUs;
+export default App;
